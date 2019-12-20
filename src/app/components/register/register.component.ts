@@ -8,6 +8,7 @@ import { UserService } from '../../services/user.service';
   styleUrls: ['./register.component.css'],
   providers: [UserService]
 })
+
 export class RegisterComponent implements OnInit {
 
   public pageTitle: string;

@@ -34,6 +34,13 @@ export class UserService {
     return this._http.post(this.url+'login', json, {headers:headers});
   }
 
+  logout(token): Observable<any> {
+    let headers = new HttpHeaders().set('Content-Type', 'application/json')
+                                    .set('Authorization', token);
+                                  console.log(headers);
+    return this._http.post(this.url+'logout',null, {headers:headers});
+  }
+
   update (user, token): Observable<any> {
     let json = JSON.stringify(user);
 

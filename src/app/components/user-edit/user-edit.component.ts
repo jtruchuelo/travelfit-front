@@ -8,6 +8,7 @@ import { UserService } from '../../services/user.service';
   styleUrls: ['./user-edit.component.css'],
   providers: [UserService]
 })
+
 export class UserEditComponent implements OnInit {
 
   public pageTitle: string;
@@ -19,7 +20,7 @@ export class UserEditComponent implements OnInit {
   constructor(
     private _userService: UserService
   ) {
-    this.pageTitle = 'Editar usuario';
+    this.pageTitle = 'Editar perfil';
     this.user = new User (1, '', '', '', '', '');
     this.identity = this._userService.getIdentity();
     this.userToken = this._userService.getToken();
@@ -41,6 +42,7 @@ export class UserEditComponent implements OnInit {
           this.identity.email = this.user.email;
 
           localStorage.setItem('identity', JSON.stringify(this.identity));
+
         }
       },
       error => {

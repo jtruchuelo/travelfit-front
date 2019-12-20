@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, Params} from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { UserService } from '../../services/user.service';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap'; // ESTO
 
 @Component({
   selector: 'login',
@@ -20,7 +21,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private _userServices: UserService,
     private _router: Router,
-    private _route: ActivatedRoute
+    private _route: ActivatedRoute,
+    public activeModal: NgbActiveModal
   ) {
     this.pageTitle = 'Iniciar sesión en TravelFit';
     this.user = new User (1, '', '', '', '', '');
@@ -30,6 +32,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(form) {
+
     this._userServices.login(this.user).subscribe(
       response => {
         console.log(response);
@@ -44,7 +47,8 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('userToken', this.userToken);
           localStorage.setItem('identity', JSON.stringify(this.identity));
 
-          this._router.navigate(['inicio']);
+          this.activeModal.close();
+          this._router.navigate(['home']);
         } else {
           this.status = 'error';
         }
@@ -58,17 +62,32 @@ export class LoginComponent implements OnInit {
   }
 
   logout() {
+    localStorage.getItem('userToken') ? this._userServices.logout(localStorage.getItem('userToken')).subscribe() : null;
+
     this._route.params.subscribe(params =>{
       let logout = +params['sure'];
       if(logout == 1){
+
         localStorage.removeItem('identity');
         localStorage.removeItem('userToken');
 
         this.identity = null;
         this.userToken = null;
 
-        this._router.navigate(['inicio']);
+        this._router.navigate(['home']);
       }
-    })
+    });
+  }
+}
+
+@Component({
+  selector: 'login-modal-component',
+  template: '<button type="button" class="btn btn-success mx-1" (click)="open()">Iniciar sesión</button>'
+})
+export class NgbdModalComponent {
+  constructor(private modalService: NgbModal) {}
+
+  open() {
+    const modalRef = this.modalService.open(LoginComponent);
   }
 }

@@ -2,3 +2,53 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+/* MENU ACTIVADO */
+.nav-item a.active {
+  text-decoration: underline;
+}
+
+/* AUTOCOMPLETE RESULT HOME */
+
+.autocomplete {
+  z-index: 1000;
+  display: block;
+  float: left;
+  min-width: 10rem;
+  padding: .5rem 0;
+  margin: .125rem 0 0;
+  font-size: 1rem;
+  color:
+  #212529;
+  text-align: left;
+  list-style: none;
+  background-color:
+  #fff;
+  background-clip: padding-box;
+  border: 1px solid
+  rgba(0,0,0,.15);
+  border-radius: .25rem;
+}
+
+.autocomplete > div:hover {
+  color: #212529;
+  background:  #dad8d8;
+}
+.autocomplete > div.selected {
+  background: #0069d9;
+  color: white;
+}
+
+.autocomplete .item-context {
+  font-size:.8em;
+  color:#ccc;
+  padding:.1em 0 .1em 5px;
+}
+
+.autocomplete .item-type {
+  font-size:.7em;
+  color:#aaa;
+  display:block;
+  width:100%;
+}

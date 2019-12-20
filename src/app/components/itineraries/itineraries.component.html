@@ -1,0 +1,20 @@
+<div class="container-fluid loading" *ngIf="!itineraries">
+  <h2>{{pageTitle}}</h2>
+  <p>Cargando...</p>
+</div>
+
+<div class="container-fluid" *ngIf="itineraries">
+  <h2>{{pageTitle}}</h2>
+  <hr>
+  <div class="card-columns">
+    <article class="card w-100" *ngFor="let itinerary of itineraries">
+      <div class="card-header">
+        <h3><a [routerLink]="['/home']">{{itinerary.name}}</a></h3>
+      </div>
+      <div class="card-body">
+        <!-- Imagen -->
+        <!-- Botones -->
+      </div>
+    </article>
+  </div>
+</div>

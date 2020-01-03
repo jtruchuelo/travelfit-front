@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { Geocoder } from '@maptiler/geocoder';
-import {NgbDate, NgbCalendar, NgbDateParserFormatter} from '@ng-bootstrap/ng-bootstrap';
+import { NgbDate, NgbCalendar, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import { NewItineraryService } from '../../services/new.itinerary.service';
 
 @Component({
   selector: 'home',
@@ -21,7 +23,9 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private calendar: NgbCalendar,
-    public formatter: NgbDateParserFormatter
+    public formatter: NgbDateParserFormatter,
+    private _router: Router,
+    private _itineraryService: NewItineraryService
   ) {
     this.pageTitle = 'Inicio';
     this.fromDate = calendar.getToday();
@@ -37,6 +41,13 @@ export class HomeComponent implements OnInit {
 
   onSubmit(form) {
     console.log("Adelante!");
+    this._itineraryService.startNewItinerary(
+      this.point,
+      this.city,
+      this.formatter.format(this.fromDate),
+      this.formatter.format(this.toDate)
+    );
+    this._router.navigate(['preferences']);
   }
 
   ngOnInit() {
@@ -45,6 +56,7 @@ export class HomeComponent implements OnInit {
       input: document.getElementById('city')
     });
     this.geocoder.setLanguage('es');
+    this.geocoder.geocode('city');
     this.city = '';
     this.point = null;
   }

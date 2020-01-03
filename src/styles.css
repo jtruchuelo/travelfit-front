@@ -5,6 +5,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
 /* MENU ACTIVADO */
+
 .nav-item a.active {
   text-decoration: underline;
 }
@@ -42,7 +43,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .autocomplete .item-context {
   font-size:.8em;
-  color:#ccc;
+  color:rgb(155, 155, 155);
   padding:.1em 0 .1em 5px;
 }
 
@@ -51,4 +52,21 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   color:#aaa;
   display:block;
   width:100%;
+}
+
+
+/* Datepicker sección resumen */
+.resumen .ngb-dp-day {
+  width: 3rem !important;
+  height: 3rem !important;
+}
+
+.resumen .ngb-dp-day > div {
+  width: 3rem !important;
+  height: 3rem !important;
+  line-height: 3rem !important;
+}
+
+.resumen .ngb-dp-weekday {
+  width: 3rem !important;
 }

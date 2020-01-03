@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col-md-12 mt-3">
+    <ul class="nav nav-pills">
+      <li class="nav-item">
+        <p class="nav-link">Dia</p>
+      </li>
+
+      <li *ngFor="let poi of listado | keyvalue: asIsOrder; let i = key" class="nav-item">
+        <a class="nav-link" [ngClass]="dayNumber == poi.key ? 'active' : 'inactive'" (click)="goToDay(poi.key)">{{poi.key}}</a>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12 mt-3 ml-0 pl-0">
+    <!-- <div id="map" class="mapleaflet" leaflet [leafletOptions]="options" (leafletMapReady)="onMapReady($event)"></div> -->
+    <div id="map" class="mapleaflet" ></div>
+  </div>
+</div>
+

@@ -15,7 +15,16 @@ import { ContactoComponent } from './components/contacto/contacto.component';
 import { MyItinerariesComponent } from './components/my-itineraries/my-itineraries.component';
 import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { ItinerariesComponent } from './components/itineraries/itineraries.component';
+import { PreferencesComponent } from './components/preferences/preferences.component';
+import { ItineraryComponent } from './components/itinerary/itinerary.component';
 
+import { NewItineraryService } from './services/new.itinerary.service';
+import { ItineraryService } from './services/itinerary.service';
+
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { ItinerarySummaryComponent } from './components/itinerary-summary/itinerary-summary.component';
+import { ItineraryMapComponent } from './components/itinerary-map/itinerary-map.component';
+import { ItineraryTimelineComponent } from './components/itinerary-timeline/itinerary-timeline.component';
 
 
 @NgModule({
@@ -29,7 +38,12 @@ import { ItinerariesComponent } from './components/itineraries/itineraries.compo
     MyItinerariesComponent,
     UserEditComponent,
     NgbdModalComponent,
-    ItinerariesComponent
+    ItinerariesComponent,
+    PreferencesComponent,
+    ItineraryComponent,
+    ItinerarySummaryComponent,
+    ItineraryMapComponent,
+    ItineraryTimelineComponent
   ],
   imports: [
     BrowserModule,
@@ -38,13 +52,14 @@ import { ItinerariesComponent } from './components/itineraries/itineraries.compo
     routing,
     FormsModule,
     HttpClientModule,
+    LeafletModule,
   ],
   exports: [
     NgbdModalComponent
   ],
   entryComponents: [LoginComponent],
   providers: [
-    appRoutingProviders, NgbActiveModal
+    appRoutingProviders, NgbActiveModal, NewItineraryService, ItineraryService
   ],
   bootstrap: [AppComponent]
 })

@@ -37,7 +37,7 @@ export class UserService {
   logout(token): Observable<any> {
     let headers = new HttpHeaders().set('Content-Type', 'application/json')
                                     .set('Authorization', token);
-                                  console.log(headers);
+    // console.log(headers);
     return this._http.post(this.url+'logout',null, {headers:headers});
   }
 

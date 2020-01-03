@@ -5,8 +5,7 @@ import { ItineraryService } from '../../services/itinerary.service';
 @Component({
   selector: 'itineraries',
   templateUrl: './itineraries.component.html',
-  styleUrls: ['./itineraries.component.css'],
-  providers: [ItineraryService]
+  styleUrls: ['./itineraries.component.css']
 })
 
 export class ItinerariesComponent implements OnInit {
@@ -29,7 +28,7 @@ export class ItinerariesComponent implements OnInit {
       response => {
         if (response.data.status == 'success') {
           this.itineraries = response.data.itineraries;
-          console.log(this.itineraries);
+          // console.log(this.itineraries);
         }
       },
       error => {

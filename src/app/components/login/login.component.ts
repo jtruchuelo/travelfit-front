@@ -35,14 +35,14 @@ export class LoginComponent implements OnInit {
 
     this._userServices.login(this.user).subscribe(
       response => {
-        console.log(response);
+        // console.log(response);
         if (response.status != 'error') {
           this.status = 'success';
           this.userToken = response.userToken;
           this.identity = response.user;
 
-          console.log(this.userToken);
-          console.log(this.identity);
+          // console.log(this.userToken);
+          // console.log(this.identity);
 
           localStorage.setItem('userToken', this.userToken);
           localStorage.setItem('identity', JSON.stringify(this.identity));

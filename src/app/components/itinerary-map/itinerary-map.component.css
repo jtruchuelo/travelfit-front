@@ -1,0 +1,8 @@
+.mapleaflet {
+  height: 40em;
+}
+
+.inactive {
+  color: blue;
+  cursor: pointer;
+}

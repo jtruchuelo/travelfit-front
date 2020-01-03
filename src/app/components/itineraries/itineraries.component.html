@@ -1,4 +1,4 @@
-<div class="container-fluid loading" *ngIf="!itineraries">
+<div class="container-fluid loading" style="height: 500px" *ngIf="!itineraries">
   <h2>{{pageTitle}}</h2>
   <p>Cargando...</p>
 </div>
@@ -8,13 +8,20 @@
   <hr>
   <div class="card-columns">
     <article class="card w-100" *ngFor="let itinerary of itineraries">
-      <div class="card-header">
-        <h3><a [routerLink]="['/home']">{{itinerary.name}}</a></h3>
-      </div>
-      <div class="card-body">
-        <!-- Imagen -->
-        <!-- Botones -->
-      </div>
-    </article>
+
+        <div class="card-header">
+          <!-- Imagen -->
+          <img src="..." class="card-img-top" alt="...">
+        </div>
+        <div class="card-body">
+          <h5 class="card-title"><a [routerLink]="['/home']">{{itinerary.name}}</a></h5>
+          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <p class="card-text"><small class="text-muted">{{itinerary.user_name}}</small></p>
+          <p class="card-text" *ngIf="itinerary.destinations.length > 1; else elseBlock"><small class="text-muted">{{itinerary.destinations.length}} dias</small></p>
+          <ng-template #elseBlock><p class="card-text"><small class="text-muted">{{itinerary.destinations.length}} dia</small></p></ng-template>
+          <!-- Botones -->
+        </div>
+
+      </article>
   </div>
 </div>

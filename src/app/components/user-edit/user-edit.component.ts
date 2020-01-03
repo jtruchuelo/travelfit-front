@@ -33,7 +33,7 @@ export class UserEditComponent implements OnInit {
   onSubmit(form) {
     this._userService.update(this.identity, this.userToken).subscribe(
       response => {
-        console.log(response);
+        // console.log(response);
         if (response && response.status == 'success') {
           this.status = 'success';
           this.identity.name = this.user.name;

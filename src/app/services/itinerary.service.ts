@@ -18,10 +18,10 @@ export class ItineraryService {
     this.url = global.url;
   }
 
+  // FUNCIONES OBTENER DATOS API
+  // Obtener los itinerarios publicos del sistema
   getItineraries(): Observable<any> {
-
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
-
     return this._http.get(this.url+'itineraries', {headers:headers});
   }
 }

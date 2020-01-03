@@ -1,0 +1,59 @@
+<h1>{{pageTitle}}</h1>
+
+<div class="d-flex justify-content-center">
+  <div class="shadow-lg card col-md-9">
+    <div class="card-body">
+      <p>Escoge tus preferencias de itinerario</p>
+      <div class="alert alert-danger mt-3" *ngIf="!status">
+        Se ha producido un error, por favor, vuelve a crear el itinerario. <a [routerLink]="['/home']">Inicio</a>
+      </div>
+      <form #categoriesForm="ngForm" (ngSubmit)="onSubmit(categoriesForm)">
+        <div class="form-group">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" name="tourism" id="tourism"
+              [(ngModel)]="categories.sightseeing">
+            <label class="form-check-label" for="tourism">
+              Turismo
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" name="art" id="art"
+              [(ngModel)]="categories.discovering">
+            <label class="form-check-label" for="art">
+              Arte y cultura
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" name="outdoor" id="outdoor"
+              [(ngModel)]="categories.hiking">
+            <label class="form-check-label" for="outdoor">
+              Aire libre
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" name="family" id="family"
+              [(ngModel)]="categories.playing">
+            <label class="form-check-label" for="family">
+              Familia
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" name="shopping" id="shopping"
+              [(ngModel)]="categories.shopping">
+            <label class="form-check-label" for="shopping">
+              Compras
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" name="sports" id="sports"
+              [(ngModel)]="categories.doing_sports">
+            <label class="form-check-label" for="sports">
+              Deporte
+            </label>
+          </div>
+          <input type="submit" value="Continuar" class="btn btn-success mt-3" />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

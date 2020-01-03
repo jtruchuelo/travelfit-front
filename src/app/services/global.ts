@@ -1,3 +1,3 @@
 export var global = {
-  url: 'http://travelfit.com.devel/api/'
+  url: 'http://travelfit.com.devel/api/',
 }

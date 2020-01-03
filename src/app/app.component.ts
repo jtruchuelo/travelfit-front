@@ -22,7 +22,7 @@ export class AppComponent implements OnInit, DoCheck {
   }
 
   ngOnInit() {
-    console.log("TravelFit");
+    console.log("TravelFit App started");
   }
 
   ngDoCheck() {

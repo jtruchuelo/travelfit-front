@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-md-12 mt-3 ml-0 pl-0">
+    <div *ngFor="let poi of pois | keyvalue: asIsOrder;">
+      <h5><strong>Dia {{poi.key}}</strong></h5>
+      <div class="row">
+        <div class="card ml-auto my-1" style="width: 90%" *ngFor="let item of poi.value">
+          <div class="row no-gutters">
+            <div class="col-md-1">
+              <img *ngIf="item['photo']; else elseBlock" src="{{item['photo']}}" class="rounded m-3">
+              <ng-template #elseBlock>
+                <div class="rounded m-3" style="height: 150px; width: 150px; background-color: gray;">
+                  <p class="text-center pt-5" style="color: white;">Sin imagen</p>
+                </div>
+              </ng-template>
+            </div>
+            <div class="col-md-10 ml-auto">
+              <div class="card-body">
+                <h5 class="card-title">{{item['name']}}</h5>
+                <p class="card-text w-75">{{item['description']}}</p>
+                <p class="card-text"><small class="text-muted">Duración estimada: {{item['duration']/60}} minutos </small></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr/>
+    </div>
+  </div>
+</div>

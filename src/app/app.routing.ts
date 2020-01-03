@@ -11,10 +11,12 @@ import { ContactoComponent } from './components/contacto/contacto.component';
 import { MyItinerariesComponent } from './components/my-itineraries/my-itineraries.component';
 import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { ItinerariesComponent } from './components/itineraries/itineraries.component';
+import { PreferencesComponent } from './components/preferences/preferences.component';
+import { ItineraryComponent } from './components/itinerary/itinerary.component';
 
 // RUTAS
 const appRoutes: Routes = [
-  {path: '', component: HomeComponent}, // ruta inicial, hay que cambiar al home page component cuando exista
+  {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
   //{path: 'login', component: LoginComponent},
   {path: 'logout/:sure', component: LoginComponent},
@@ -23,7 +25,9 @@ const appRoutes: Routes = [
   {path: 'contact', component: ContactoComponent},
   {path: 'myItineraries', component: MyItinerariesComponent},
   {path: 'itineraries', component: ItinerariesComponent},
-  {path:'**', component: ErrorComponent}, // Ruta error default
+  {path: 'preferences', component: PreferencesComponent},
+  {path: 'itinerary/:id', component: ItineraryComponent},
+  {path: '**', component: ErrorComponent}, // Ruta error default
 ];
 
 // EXPORTAR RUTAS

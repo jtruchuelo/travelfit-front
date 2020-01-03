@@ -35,7 +35,7 @@ export class ItinerarySummaryComponent implements OnInit {
   onMapReady(map: L.Map) {
     setTimeout(() => {
       map.invalidateSize();
-    }, 0);
+    }, 500);
   }
 
   ngOnInit() {

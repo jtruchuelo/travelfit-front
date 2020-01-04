@@ -56,17 +56,20 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
 /* Datepicker sección resumen */
-.resumen .ngb-dp-day {
-  width: 3rem !important;
-  height: 3rem !important;
-}
+@media (min-width: 768px) {
+  .resumen .ngb-dp-day {
+    width: 3rem !important;
+    height: 3rem !important;
+  }
 
-.resumen .ngb-dp-day > div {
-  width: 3rem !important;
-  height: 3rem !important;
-  line-height: 3rem !important;
-}
+  .resumen .ngb-dp-day > div {
+    width: 3rem !important;
+    height: 3rem !important;
+    line-height: 3rem !important;
+  }
 
-.resumen .ngb-dp-weekday {
-  width: 3rem !important;
+  .resumen .ngb-dp-weekday {
+    width: 3rem !important;
+  }
+
 }

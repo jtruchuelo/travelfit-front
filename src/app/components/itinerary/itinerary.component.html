@@ -6,13 +6,19 @@
     <div class="row justify-content-md-center">
       <div class="progress" style="width: 50%">
         <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 100%"
-        aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Procesando</div>
+          aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Procesando</div>
       </div>
     </div>
   </div>
 </div>
 
-<div class="col-md-12" *ngIf="!new && actualItinerary">
+<div class="d-flex justify-content-center" style="height: 500px" *ngIf="!new && loading">
+  <div class="spinner-border text-primary my-auto" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+
+<div class="col-md-12" *ngIf="!new && !loading && actualItinerary">
   <div class="row">
     <h4>{{actualItinerary.name}} <small class="ml-2">{{actualItinerary.startDate | date:'dd/MM/yyyy'}} -
         {{actualItinerary.endDate | date:'dd/MM/yyyy'}}</small></h4>
@@ -21,13 +27,20 @@
     <div class="col-md-12 ml-0 pl-0">
       <ul class="nav nav-tabs">
         <li class="nav-item">
-          <a class="nav-link" [ngClass]="{'active':summary, 'inactive': !summary}" (click)="estado('summary')">Resumen</a>
+          <a class="nav-link" [ngClass]="{'active':summary, 'inactive': !summary}"
+            (click)="estado('summary')">Resumen</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [ngClass]="{'active':timeline, 'inactive': !timeline}" (click)="estado('timeline')">Timeline</a>
+          <a class="nav-link" [ngClass]="{'active':timeline, 'inactive': !timeline}"
+            (click)="estado('timeline')">Timeline</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" [ngClass]="{'active':map, 'inactive': !map}" (click)="estado('map')">Mapa</a>
+        </li>
+        <li class="ml-auto mt-2 text-primary ajustes" *ngIf="modifyEnable" data-toggle="modal"
+          data-target="#editModal">
+          <i class="material-icons mr-2 align-middle">build</i>
+          <a class="d-none d-sm-inline">Ajustes de itinerario</a>
         </li>
       </ul>
     </div>
@@ -37,3 +50,45 @@
   <itinerary-map *ngIf="map" [itinerary]="actualItinerary"></itinerary-map>
 </div>
 
+<div class="modal fade" name="editModal" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true" *ngIf="!loading">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editModalLabel">Ajustes de itinerario</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form #editItineraryForm="ngForm" (ngSubmit)="onSubmit(editItineraryForm)">
+        <div class="modal-body">
+          <div class="alert alert-success mt-3" *ngIf="status == 'success'">
+            Se han guardado los cambios.
+          </div>
+          <div class="alert alert-danger mt-3" *ngIf="status == 'error'">
+            No se han podido guardar los cambios.
+          </div>
+          <div class="alert alert-danger mt-3" *ngIf="statusItinerary == 'error'">
+            No se ha podido eliminar el itinerario.
+          </div>
+          <div class="form-group">
+            <label for="title">Nombre de Itinerario</label>
+            <input type="text" name="title" #title="ngModel" [(ngModel)]="actualItinerary.name" class="form-control" required pattern="[a-zA-ZÀ-ÿ0-9\s]+">
+            <small *ngIf="!title.valid" class="invalid-feedback d-block">El nombre del itinerario no es válido</small>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" name="public" #isPublic="ngModel" [(ngModel)]="actualItinerary.isPublic">
+            <label class="form-check-label" for="public">Itinerario público</label>
+          </div>
+          <hr/>
+          <div>
+            <button type="button" class="btn btn-danger" style="display: inline;" (click)="deleteItinerary(actualItinerary)">Eliminar itinerario</button>
+            <p class="ml-2" style="display: inline;">Esta acción es irreversible.</p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <input type="submit" value="Guardar" class="btn btn-primary" [disabled]="editItineraryForm.invalid" />
+        </div>
+        </form>
+    </div>
+  </div>
+</div>

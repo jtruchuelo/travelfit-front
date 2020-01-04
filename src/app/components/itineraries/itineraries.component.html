@@ -1,27 +1,38 @@
-<div class="container-fluid loading" style="height: 500px" *ngIf="!itineraries">
-  <h2>{{pageTitle}}</h2>
-  <p>Cargando...</p>
-</div>
-
-<div class="container-fluid" *ngIf="itineraries">
-  <h2>{{pageTitle}}</h2>
-  <hr>
-  <div class="card-columns">
-    <article class="card w-100" *ngFor="let itinerary of itineraries">
-
-        <div class="card-header">
-          <!-- Imagen -->
-          <img src="..." class="card-img-top" alt="...">
-        </div>
-        <div class="card-body">
-          <h5 class="card-title"><a [routerLink]="['/home']">{{itinerary.name}}</a></h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-          <p class="card-text"><small class="text-muted">{{itinerary.user_name}}</small></p>
-          <p class="card-text" *ngIf="itinerary.destinations.length > 1; else elseBlock"><small class="text-muted">{{itinerary.destinations.length}} dias</small></p>
-          <ng-template #elseBlock><p class="card-text"><small class="text-muted">{{itinerary.destinations.length}} dia</small></p></ng-template>
-          <!-- Botones -->
-        </div>
-
-      </article>
+  <div class="d-flex justify-content-center" style="height: 500px" *ngIf="!itineraries">
+    <div class="spinner-border text-primary my-auto" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
   </div>
-</div>
+
+  <div class="row row-cols-1 row-cols-md-3" *ngIf="itineraries">
+    <div class="col-md-12 mt-3 mx-sm-2 mx-md-0 px-md-0">
+      <h2>{{pageTitle}}</h2>
+      <hr>
+      <div class="card-columns">
+        <article class="card" *ngFor="let itinerary of itineraries">
+
+          <div class="card-header p-0" style="max-height: 170px; overflow: hidden;">
+            <!-- Imagen -->
+            <img [src]="itinerary.destinations[0].photo" class="card-img-top align-middle" alt="Imagen destino">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title" *ngIf="identity && identity.user_id == itinerary.user_id; else alterBlock"><a
+                [routerLink]="['/itinerary', identity.user_id, itinerary.id]">{{itinerary.name}}</a></h5>
+            <ng-template #alterBlock>
+              <h5 class="card-title"><a [routerLink]="['/itinerary', itinerary.id]">{{itinerary.name}}</a></h5>
+            </ng-template>
+
+            <p class="card-text" *ngIf="calculateDays(itinerary) > 1; else elseBlock;"><small
+                class="text-muted">Duración: {{ calculateDays(itinerary) }} dias - Usuario:
+                {{itinerary.user_name}}</small></p>
+            <ng-template #elseBlock>
+              <p class="card-text"><small class="text-muted">Duración: {{ calculateDays(itinerary) }} dia - Usuario:
+                  {{itinerary.user_name}}</small></p>
+            </ng-template>
+            <!-- Botones -->
+          </div>
+
+        </article>
+      </div>
+    </div>
+  </div>

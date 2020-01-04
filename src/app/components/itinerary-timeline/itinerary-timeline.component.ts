@@ -15,7 +15,6 @@ export class ItineraryTimelineComponent implements OnInit {
 
   ngOnInit() {
     this.pois = this.getPois(this.itinerary.destinations['pois']);
-    // console.log (this.pois);
   }
 
   asIsOrder(a, b) {
@@ -33,7 +32,6 @@ export class ItineraryTimelineComponent implements OnInit {
         array.set(poi['startDate'].substring(8, 10).replace(/^0+/, ''), [poi]);
       }
     }
-    // console.log(array);
     return array;
   }
 

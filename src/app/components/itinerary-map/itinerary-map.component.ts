@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Itinerary } from 'src/app/models/itinerary';
 import * as L from 'leaflet';
-import { ADDRGETNETWORKPARAMS } from 'dns';
 
 @Component({
   selector: 'itinerary-map',
@@ -51,11 +50,21 @@ export class ItineraryMapComponent implements OnInit {
       this.layerGroupMap.clearLayers();
     }
     for (let i=0; i<array.length; i+=2) {
-      markers[i] = L.marker([array[i]['lat'], array[i]['lng']], {icon : icon}).bindPopup(array[i+1]).addTo(this.layerGroupMap);
+      if (typeof array[i] === 'object') {
+        markers[i] = L.marker([array[i]['lat'], array[i]['lng']], {icon : icon}).bindPopup(array[i+1]).addTo(this.layerGroupMap);
+      } else {
+        let temp = JSON.parse(array[i]);
+        markers[i] = L.marker([temp['lat'], temp['lng']], {icon : icon}).bindPopup(array[i+1]).addTo(this.layerGroupMap);
+      }
     }
     let group = new L.featureGroup();
-    for (var i = 0; i < array.length; i++) {
-      L.marker( L.latLng(array[i]['lat'], array[i]['lng'])).addTo(group);
+    for (var i = 0; i < array.length; i+=2) {
+      if (typeof array[i] === 'object') {
+        L.marker( L.latLng(array[i]['lat'], array[i]['lng'])).addTo(group);
+      } else {
+        let temp = JSON.parse(array[i]);
+        L.marker( L.latLng(temp['lat'], temp['lng'])).addTo(group);
+      }
     }
     this.mymap.fitBounds(group.getBounds());
   }

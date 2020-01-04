@@ -1,10 +1,12 @@
 <div class="col-md-8 pl-0 ml-0">
   <h2>{{pageTitle}}</h2>
 
-  <p>TravelFit es una aplicación para la creación de itinerarios en en aquellos destinos que visites. <br/> Con TravelFit podrás buscar puntos de interés de múltiples categorías que te permitirán descubrir un sin fin de lugares mágicos para disfrutar en tus vacaciones.</p>
-  <br/>
-  <p>Para cualquier consulta que quieras realizar, puedes contactar con nosotros a través de este formulario, estaremos encantados de atenderte lo más rápido posible.</p>
-
+  <p>TravelFit es una aplicación para la creación automática de itinerarios en aquellos destinos que visites. <br />
+    Con TravelFit podrás crear itinerarios según tus preferencias, descubriendo un sin fin de lugares mágicos para
+    disfrutar en tus vacaciones.</p>
+  <br />
+  <p>Para cualquier consulta que quieras realizar, puedes contactar con nosotros a través de este formulario,
+    estaremos encantados de atenderte lo más rápido posible.</p>
   <div class="alert alert-success col-md-6 mt-3" *ngIf="status == 'success'">
     El registro se ha completado correctamente.
   </div>
@@ -13,28 +15,36 @@
     No se ha podido registrar.
   </div>
 
-  <form class="mr-5 mt-4 ml-0 pl-0" #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)">
+  <form class="col-md-8 col-sm-5 mr-5 mt-4 ml-0 pl-0" #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)">
     <div class="form-group">
       <label for="name">Nombre</label>
-      <input type="text" name="name" class="form-control" #nameContact="ngModel" [(ngModel)]="name" required pattern="[a-zA-Z]+" placeholder="Nombre">
-      <small *ngIf="!nameContact.valid && nameContact.touched" class="invalid-feedback d-block">El nombre no es válido</small>
+      <input type="text" name="name" class="form-control" #nameContact="ngModel" [(ngModel)]="name" required
+        pattern="[a-zA-ZÀ-ÿ0-9\s]+" placeholder="Nombre">
+      <small *ngIf="!nameContact.valid && nameContact.touched" class="invalid-feedback d-block">El nombre no es
+        válido</small>
     </div>
     <div class="form-group">
       <label for="email">Email</label>
-      <input type="email" name="email" class="form-control" #emailContact="ngModel" [(ngModel)]="email" required pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" placeholder="Email">
-      <small *ngIf="!emailContact.valid && emailContact.touched" class="invalid-feedback d-block">El correo no es válido</small>
+      <input type="email" name="email" class="form-control" #emailContact="ngModel" [(ngModel)]="email" required
+        pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" placeholder="Email">
+      <small *ngIf="!emailContact.valid && emailContact.touched" class="invalid-feedback d-block">El correo no es
+        válido</small>
     </div>
     <div class="form-group">
       <label for="subject">Asunto</label>
-      <input type="text" name="subject" class="form-control" #subjectContact="ngModel" [(ngModel)]="subject" required placeholder="Asunto">
-      <small *ngIf="!subjectContact.valid && subjectContact.touched" class="invalid-feedback d-block">El asunto no es válido</small>
+      <input type="text" name="subject" class="form-control" #subjectContact="ngModel" [(ngModel)]="subject" required
+        placeholder="Asunto">
+      <small *ngIf="!subjectContact.valid && subjectContact.touched" class="invalid-feedback d-block">El asunto no es
+        válido</small>
     </div>
     <div class="form-group">
       <label for="message">Mensaje</label>
-      <textarea name="message" class="form-control" #messageContact="ngModel" [(ngModel)]="message" required placeholder="Mensaje"></textarea>
-      <small *ngIf="!messageContact.valid && messageContact.touched" class="invalid-feedback d-block">El asunto no es válido</small>
+      <textarea name="message" class="form-control" #messageContact="ngModel" [(ngModel)]="message" required
+        placeholder="Mensaje"></textarea>
+      <small *ngIf="!messageContact.valid && messageContact.touched" class="invalid-feedback d-block">El asunto no es
+        válido</small>
     </div>
-    <input type="submit" value="Enviar" class="btn btn-success btn-lg btn-block" [disabled]="contactForm.invalid"/>
+    <input type="submit" value="Enviar" class="btn btn-success btn-lg btn-block" [disabled]="contactForm.invalid" />
   </form>
 
 </div>

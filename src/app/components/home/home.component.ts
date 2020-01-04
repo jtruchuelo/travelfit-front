@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Geocoder } from '@maptiler/geocoder';
 import { NgbDate, NgbCalendar, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { NewItineraryService } from '../../services/new.itinerary.service';
+import { LastItinerariesComponent } from '../last-itineraries/last-itineraries.component';
 
 @Component({
   selector: 'home',
@@ -25,7 +26,7 @@ export class HomeComponent implements OnInit {
     private calendar: NgbCalendar,
     public formatter: NgbDateParserFormatter,
     private _router: Router,
-    private _itineraryService: NewItineraryService
+    private _itineraryService: NewItineraryService,
   ) {
     this.pageTitle = 'Inicio';
     this.fromDate = calendar.getToday();

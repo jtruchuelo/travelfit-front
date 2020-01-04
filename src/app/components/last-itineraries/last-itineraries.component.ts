@@ -1,28 +1,23 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../services/user.service';
 import { Itinerary } from '../../models/itinerary';
 import { ItineraryService } from '../../services/itinerary.service';
-import { UserService } from '../../services/user.service';
 
 @Component({
-  selector: 'itineraries',
-  templateUrl: './itineraries.component.html',
-  styleUrls: ['./itineraries.component.css'],
+  selector: 'last-itineraries',
+  templateUrl: './last-itineraries.component.html',
+  styleUrls: ['./last-itineraries.component.css'],
   providers: [UserService],
 })
+export class LastItinerariesComponent implements OnInit {
 
-export class ItinerariesComponent implements OnInit {
-
-  public pageTitle: string;
-  public itineraries: Array<Itinerary>;
-  public userToken;
   public identity;
+  public lastItineraries: Array<Itinerary>;
 
   constructor(
-    private _itineraryService: ItineraryService,
     private _userService: UserService,
-  ) {
-    this.pageTitle = 'Itinerarios de viaje';
-  }
+    private _itineraryService: ItineraryService,
+  ) { }
 
   ngOnInit() {
     this.identity = this._userService.getIdentity();
@@ -36,12 +31,17 @@ export class ItinerariesComponent implements OnInit {
     return difference / (1000 * 3600 * 24);
   }
 
-  getItineraries(){
+  getItineraries() {
     this._itineraryService.getItineraries().subscribe(
       response => {
         if (response.data.status == 'success') {
-          this.itineraries = response.data.itineraries;
-          // console.log(this.itineraries);
+           let temp: Array<Itinerary>= [];
+           for (let i = 0; i < 4; i++) {
+             temp.push(response.data.itineraries[i]);
+
+          }
+          this.lastItineraries = temp;
+          console.log(this.lastItineraries);
         }
       },
       error => {

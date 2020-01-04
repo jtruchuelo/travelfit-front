@@ -27,6 +27,7 @@ const appRoutes: Routes = [
   {path: 'itineraries', component: ItinerariesComponent},
   {path: 'preferences', component: PreferencesComponent},
   {path: 'itinerary/:id', component: ItineraryComponent},
+  {path: 'itinerary/:user/:id', component: ItineraryComponent},
   {path: '**', component: ErrorComponent}, // Ruta error default
 ];
 

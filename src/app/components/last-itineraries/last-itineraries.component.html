@@ -1,0 +1,34 @@
+<div class="row row-cols-1 row-cols-md-3" *ngIf="lastItineraries">
+  <div class="col-md-12 mt-3 mx-2 pl-0">
+    <div class="mb-2">
+      <h3 style="display: inline;">Últimos itinerarios</h3>
+      <a class="ml-3" [routerLink]="['/itineraries']">Ver más</a>
+
+    </div>
+    <div class="card-deck">
+      <article class="card" *ngFor="let itinerary of lastItineraries">
+        <div class="card-header p-0" style="max-height: 170px; overflow: hidden;">
+          <img [src]="itinerary.destinations[0].photo" class="card-img-top align-middle" alt="Imagen destino">
+        </div>
+        <div class="card-body">
+          <h5 class="card-title" *ngIf="identity && identity.user_id == itinerary.user_id; else alterBlock"><a
+              [routerLink]="['/itinerary', identity.user_id, itinerary.id]">{{itinerary.name}}</a></h5>
+          <ng-template #alterBlock>
+            <h5 class="card-title"><a [routerLink]="['/itinerary', itinerary.id]">{{itinerary.name}}</a></h5>
+          </ng-template>
+
+          <p class="card-text" *ngIf="calculateDays(itinerary) > 1; else elseBlock;"><small class="text-muted">Duración:
+              {{ calculateDays(itinerary) }} dias</small></p>
+          <ng-template #elseBlock>
+            <p class="card-text"><small class="text-muted">Duración: {{ calculateDays(itinerary) }} dia</small></p>
+          </ng-template>
+        </div>
+      </article>
+    </div>
+  </div>
+</div>
+<div class="d-flex justify-content-center" style="height: 200px" *ngIf="!lastItineraries">
+  <div class="spinner-border text-primary my-auto" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>

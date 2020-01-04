@@ -9,6 +9,7 @@ import { UserService } from './services/user.service';
   providers: [UserService],
 
 })
+
 export class AppComponent implements OnInit, DoCheck {
 
   title = 'TravelFit Home';

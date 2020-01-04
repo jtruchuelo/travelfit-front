@@ -1,2 +1,35 @@
-<h1>{{pageTitle}}</h1>
-<p>my-itineraries works!</p>
+<div class="container mt-3">
+  <div class="d-flex justify-content-center" style="height: 500px" *ngIf="!itineraries">
+    <div class="spinner-border text-primary my-auto" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+
+  </div>
+
+  <div class="row row-cols-1 row-cols-md-3" *ngIf="itineraries">
+    <div class="col-md-12 mt-3 mx-sm-2 mx-md-0 px-md-0">
+      <h2>{{pageTitle}}</h2>
+      <hr>
+      <div class="card-columns">
+        <article class="card" *ngFor="let itinerary of itineraries">
+
+          <div class="card-header p-0" style="max-height: 170px; overflow: hidden;">
+            <!-- Imagen -->
+            <img [src]="itinerary.destinations[0].photo" class="card-img-top align-middle" alt="Imagen destino">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title"><a
+                [routerLink]="['/itinerary', identity.user_id, itinerary.id]">{{itinerary.name}}</a></h5>
+            <p class="card-text" *ngIf="calculateDays(itinerary) > 1; else elseBlock"><small
+                class="text-muted">Duración: {{calculateDays(itinerary)}} dias</small></p>
+            <ng-template #elseBlock>
+              <p class="card-text"><small class="text-muted">Duración: {{calculateDays(itinerary)}} dia</small></p>
+            </ng-template>
+            <!-- Botones -->
+          </div>
+
+        </article>
+      </div>
+    </div>
+  </div>
+</div>

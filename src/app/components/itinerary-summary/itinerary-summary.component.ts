@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Itinerary } from 'src/app/models/itinerary';
 import * as L from 'leaflet';
 import { NgbDatepickerConfig, NgbDate, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { positionElements } from '@ng-bootstrap/ng-bootstrap/util/positioning';
 
 @Component({
   selector: 'itinerary-summary',
@@ -38,6 +39,13 @@ export class ItinerarySummaryComponent implements OnInit {
     }, 500);
   }
 
+  calculateDays(itinerary:Itinerary): number {
+    let a = new Date (itinerary.startDate);
+    let b = new Date (itinerary.endDate);
+    let difference = b.getTime() - a.getTime();
+    return difference / (1000 * 3600 * 24);
+  }
+
   ngOnInit() {
     // Calendario
     let DateCalendar = new Date (this.itinerary.startDate);
@@ -50,8 +58,15 @@ export class ItinerarySummaryComponent implements OnInit {
     let icon = new L.Icon.Default();
     icon.options.shadowSize = [0,0];
 
-    let position = [this.itinerary.destinations['location']['lat']];
-    position.push(this.itinerary.destinations['location']['lng']);
+    let position;
+    if (typeof this.itinerary.destinations['location'] === 'object') {
+      position = [this.itinerary.destinations['location']['lat']];
+      position.push(this.itinerary.destinations['location']['lng']);
+    } else {
+      let temp = JSON.parse(this.itinerary.destinations['location']);
+      position = [temp['lat']];
+      position.push(temp['lng']);
+    }
 
     this.options = {
       layers: [

@@ -5,6 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import * as bootstrap from "bootstrap";
+import * as $ from "jquery";
 
 import { AppComponent } from './app.component';
 import { LoginComponent, NgbdModalComponent } from './components/login/login.component';
@@ -17,14 +19,15 @@ import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { ItinerariesComponent } from './components/itineraries/itineraries.component';
 import { PreferencesComponent } from './components/preferences/preferences.component';
 import { ItineraryComponent } from './components/itinerary/itinerary.component';
+import { ItinerarySummaryComponent } from './components/itinerary-summary/itinerary-summary.component';
+import { ItineraryMapComponent } from './components/itinerary-map/itinerary-map.component';
+import { ItineraryTimelineComponent } from './components/itinerary-timeline/itinerary-timeline.component';
+import { LastItinerariesComponent } from './components/last-itineraries/last-itineraries.component';
 
 import { NewItineraryService } from './services/new.itinerary.service';
 import { ItineraryService } from './services/itinerary.service';
 
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
-import { ItinerarySummaryComponent } from './components/itinerary-summary/itinerary-summary.component';
-import { ItineraryMapComponent } from './components/itinerary-map/itinerary-map.component';
-import { ItineraryTimelineComponent } from './components/itinerary-timeline/itinerary-timeline.component';
 
 
 @NgModule({
@@ -43,7 +46,8 @@ import { ItineraryTimelineComponent } from './components/itinerary-timeline/itin
     ItineraryComponent,
     ItinerarySummaryComponent,
     ItineraryMapComponent,
-    ItineraryTimelineComponent
+    ItineraryTimelineComponent,
+    LastItinerariesComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +59,7 @@ import { ItineraryTimelineComponent } from './components/itinerary-timeline/itin
     LeafletModule,
   ],
   exports: [
-    NgbdModalComponent
+    NgbdModalComponent,
   ],
   entryComponents: [LoginComponent],
   providers: [

@@ -2,12 +2,24 @@
   height: 100%;
 }
 
-.custom-day {
-  text-align: center;
-  padding: 0.185rem 0.25rem;
-  display: inline-block;
-  height: 3rem;
-  width: 3rem;
+
+@media (min-width: 768px) {
+  .custom-day {
+    text-align: center;
+    padding: 0.185rem 0.25rem;
+    display: inline-block;
+    height: 3rem;
+    width: 3rem;
+  }
+}
+@media (max-width: 768px) {
+  .custom-day {
+    text-align: center;
+    padding: 0.185rem 0.25rem;
+    display: inline-block;
+    height: 2rem;
+    width: 2rem;
+  }
 }
 
 .custom-day.range, .custom-day:hover {
@@ -16,4 +28,10 @@
 }
 .custom-day.faded {
   background-color: rgba(2, 117, 216, 0.5);
+}
+
+@media (max-width: 768px) {
+  .alto {
+    height: 300px;
+  }
 }

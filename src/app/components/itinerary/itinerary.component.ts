@@ -43,7 +43,7 @@ export class ItineraryComponent implements OnInit {
   ) {
     this.new = false;
     this.loading = true;
-    this.summary = true;
+    this.summary = true; // Default
     this.timeline = false;
     this.map = false;
     this.modifyEnable = true;

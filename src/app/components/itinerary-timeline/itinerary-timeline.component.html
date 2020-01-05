@@ -15,6 +15,16 @@
             </div>
             <div class="col-md-10 ml-auto">
               <div class="card-body">
+<!--                 <div class="dropdown">
+                    <button type="button" class="close"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <span class=".text-primary" aria-hidden="true">&#8942;</span>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                      <a class="dropdown-item" (click)="modifyPoi(poi.key, item)">Modificar</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item text-danger" (click)="deletePoi(poi.key, item['id'])">Elimnar</a>
+                    </div>
+                  </div> -->
                 <h5 class="card-title">{{item['name']}}</h5>
                 <p class="card-text w-75">{{item['description']}}</p>
                 <p class="card-text"><small class="text-muted">Hora: {{item['startDate'].substring(11, 16)}} - Duración estimada: {{item['duration']/60}} minutos </small></p>

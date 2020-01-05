@@ -35,4 +35,13 @@ export class ItineraryTimelineComponent implements OnInit {
     return array;
   }
 
+  /* modifyPoi(key, poi) {
+    console.log (poi);
+    $('#modifyPoi').modal('toggle');
+  }
+
+  deletePoi(key, id) {
+      console.log(key, id);
+  } */
+
 }

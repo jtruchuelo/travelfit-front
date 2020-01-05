@@ -48,11 +48,11 @@ export class ItinerarySummaryComponent implements OnInit {
 
   ngOnInit() {
     // Calendario
-    let DateCalendar = new Date (this.itinerary.startDate);
-    this.startDate = {year: DateCalendar.getFullYear(), month: DateCalendar.getMonth()+1};
-    this.fromDate = new NgbDate(DateCalendar.getFullYear(), DateCalendar.getMonth()+1, DateCalendar.getDate());
-    DateCalendar = new Date (this.itinerary.endDate);
-    this.toDate = new NgbDate(DateCalendar.getFullYear(), DateCalendar.getMonth()+1, DateCalendar.getDate());
+    let dateCalendar = new Date (this.itinerary.startDate);
+    this.startDate = {year: dateCalendar.getFullYear(), month: dateCalendar.getMonth()+1};
+    this.fromDate = new NgbDate(dateCalendar.getFullYear(), dateCalendar.getMonth()+1, dateCalendar.getDate());
+    dateCalendar = new Date (this.itinerary.endDate);
+    this.toDate = new NgbDate(dateCalendar.getFullYear(), dateCalendar.getMonth()+1, dateCalendar.getDate());
 
     // Mapa
     let icon = new L.Icon.Default();

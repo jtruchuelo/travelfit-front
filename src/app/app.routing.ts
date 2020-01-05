@@ -14,20 +14,23 @@ import { ItinerariesComponent } from './components/itineraries/itineraries.compo
 import { PreferencesComponent } from './components/preferences/preferences.component';
 import { ItineraryComponent } from './components/itinerary/itinerary.component';
 
+// GUARD
+import { IdentityGuard } from './services/identity.guards';
+
 // RUTAS
 const appRoutes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'home', component: HomeComponent},
   //{path: 'login', component: LoginComponent},
-  {path: 'logout/:sure', component: LoginComponent},
+  {path: 'logout/:sure', component: LoginComponent, canActivate: [IdentityGuard]},
   {path: 'register', component: RegisterComponent},
-  {path: 'update', component: UserEditComponent},
+  {path: 'update', component: UserEditComponent, canActivate: [IdentityGuard]},
   {path: 'contact', component: ContactoComponent},
-  {path: 'myItineraries', component: MyItinerariesComponent},
+  {path: 'myItineraries', component: MyItinerariesComponent, canActivate: [IdentityGuard]},
   {path: 'itineraries', component: ItinerariesComponent},
   {path: 'preferences', component: PreferencesComponent},
   {path: 'itinerary/:id', component: ItineraryComponent},
-  {path: 'itinerary/:user/:id', component: ItineraryComponent},
+  {path: 'itinerary/:user/:id', component: ItineraryComponent, canActivate: [IdentityGuard]},
   {path: '**', component: ErrorComponent}, // Ruta error default
 ];
 

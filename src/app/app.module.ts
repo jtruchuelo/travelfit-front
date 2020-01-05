@@ -28,6 +28,8 @@ import { NewItineraryService } from './services/new.itinerary.service';
 import { ItineraryService } from './services/itinerary.service';
 
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { UserService } from './services/user.service';
+import { IdentityGuard } from './services/identity.guards';
 
 
 @NgModule({
@@ -63,7 +65,7 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
   ],
   entryComponents: [LoginComponent],
   providers: [
-    appRoutingProviders, NgbActiveModal, NewItineraryService, ItineraryService
+    appRoutingProviders, NgbActiveModal, NewItineraryService, ItineraryService, IdentityGuard, UserService
   ],
   bootstrap: [AppComponent]
 })
